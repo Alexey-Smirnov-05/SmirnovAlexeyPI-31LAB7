@@ -94,7 +94,9 @@ public:
     static int getInstanceCount() { // Статический метод
         return instance_count;
     }
-
+    string getTitle() const override {
+        return "Base Playlist";
+    }
     void viewSongs() {
         for (size_t i = 0; i < tracks.size(); i++) {
             cout << i + 1 << ". " << tracks[i] << endl;
@@ -174,6 +176,20 @@ public:
         }
 
         file.close();
+    }
+    // Алгоритм поиска
+    int findTrack(const string& title) {
+        for (size_t i = 0; i < tracks.size(); i++) {
+            if (tracks[i].getTitle() == title) {
+                return i;
+            }
+        }
+        return -1; // Если не найдено
+    }
+    void shuffleTracks() {
+        std::random_device rd;
+        std::mt19937 g(rd());
+        std::shuffle(tracks.begin(), tracks.end(), g);
     }
 };
 
