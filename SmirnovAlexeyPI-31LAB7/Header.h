@@ -6,8 +6,10 @@
 #include <locale.h>
 #include <iostream>
 #include <string>
-#include <fstream> 
+#include <fstream>
 #include <vector>
+#include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -16,6 +18,7 @@ class Media {
 public:
     virtual void playSong() = 0; // Чисто виртуальная функция
     virtual ~Media() {} // Виртуальный деструктор
+    virtual string getTitle() const = 0;
 };
 
 // Класс для хранения информации о треке
@@ -26,7 +29,7 @@ public:
     Track() {}
     Track(const std::string& title) : title(title) {}
 
-    std::string getTitle() const {
+    std::string getTitle() const override {
         return title;
     }
 
