@@ -1,4 +1,5 @@
 #include "Header.h"
+#include <vector>
 
 int main() {
     system("chcp 1251");
@@ -24,6 +25,8 @@ int main() {
         cout << ("8. Выход\n");
         cout << ("9. Переименовать плейлист\n");
         cout << ("10. Воспроизвести конкретный трек\n");
+        cout << ("11. Поиск трека\n");
+        cout << ("12. Перемешать треки\n");
         cout << ("Действие: ");
         scanf("%d", &choice);
 
@@ -120,6 +123,25 @@ int main() {
             cout << "Введите индекс трека для воспроизведения: ";
             cin >> index;
             playlist.playSpecificSong(index - 1);
+            break;
+        }
+        case 11: {
+            string trackTitle;
+            cout << "Введите название трека для поиска: ";
+            cin >> ws;
+            getline(cin, trackTitle);
+            int index = playlist.findTrack(trackTitle);
+            if (index != -1) {
+                cout << "Трек найден под индексом: " << index + 1 << endl;
+            }
+            else {
+                cout << "Трек не найден\n";
+            }
+            break;
+        }
+        case 12: {
+            playlist.shuffleTracks();
+            cout << "Плейлист перемешан\n";
             break;
         }
         default:

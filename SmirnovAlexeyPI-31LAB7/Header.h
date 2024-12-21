@@ -210,6 +210,9 @@ public:
         return *this;
     }
 
+    string getTitle() const override {
+        return name;
+    }
     void playSong() override { // Переопределение виртуальной функции
         if (!tracks.empty()) {
             cout << "Играет из AdvancedPlaylist '" << name << "': " << tracks[current_track].getTitle() << endl;
